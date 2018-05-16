@@ -21,7 +21,7 @@ import java.io.File;
  */
 public class MainActivity extends Activity {
 
-    String url = "http://221.204.220.71/v.wallpaper.cdn.pandora.xiaomi.com/mitv/10013/1/9b95d1879f6ad208bd8c8dbc57a3d6b3.jpg";
+    String url = "https://gist.github.com/liuchonghui/277cd9fac31b8cff8c9ccbc3600b55fd/raw/49b167791912cb98c0e34bda4e44e20c5fd129a1/IMOIPIWtEU5sWyv.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
