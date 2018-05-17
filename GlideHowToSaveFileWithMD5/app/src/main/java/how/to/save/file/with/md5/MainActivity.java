@@ -21,7 +21,8 @@ import java.io.File;
  */
 public class MainActivity extends Activity {
 
-    String url = "https://gist.github.com/liuchonghui/277cd9fac31b8cff8c9ccbc3600b55fd/raw/49b167791912cb98c0e34bda4e44e20c5fd129a1/IMOIPIWtEU5sWyv.jpg";
+    // 图片可能会过期
+    String url = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526549080872&di=4fe0f2dda0c76f7957faaab4b54b8dcf&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D1569598378%2C1791208052%26fm%3D214%26gp%3D0.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +38,19 @@ public class MainActivity extends Activity {
         loadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File cachedFile = new File(
-                        EmagInternalCacheUtil.getCachePathByUrl(v.getContext(), url));
+                // 获取到缓存路径
+                String cachedFilePath = EmagInternalCacheUtil.getCachePathByUrl(v.getContext(), url);
+                File cachedFile = new File(cachedFilePath);
                 Uri uri = Uri.fromFile(cachedFile);
                 Glide.with(v.getContext()).load(uri).into(localImage);
                 cachePath.setText(cachedFile.getAbsolutePath());
             }
         });
-
         Uri uri = Uri.parse(url);
-        Glide.with(this).load(uri)
+        Glide.with(getApplicationContext())
+                .load(uri)
                 .asBitmap()
+                .dontAnimate()
                 .into(new BitmapImageViewTarget(onlineImage) {
                     @Override
                     protected void setResource(Bitmap resource) {
